@@ -1,0 +1,80 @@
+mu
+import threading # import the thread module
+import time # import time module
+def cal_sqre(num): # define the cal_sqre function
+print(" Calculate the square root of the given number")
+for n in num:
+time.sleep(0.3) # at each iteration it waits for 0.3 time
+print(' Square is : ', n * n)
+def cal_cube(num): # define the cal_cube() function
+print(" Calculate the cube of the given number")
+for n in num:
+time.sleep(0.3) # at each iteration it waits for 0.3 time
+print(" Cube is : ", n * n *n)
+arr = [4, 5, 6, 7, 2] # given array
+t1 = time.time() # get total time to execute the functions
+cal_sqre(arr) # call cal_sqre() function
+cal_cube(arr) # call cal_cube() function
+print(" Total time taken by threads is :", time.time() - t1) # print the total time
+ Calculate the square root of the given number
+ Square is : 16
+ Square is : 25
+ Square is : 36
+ Square is : 49
+ Square is : 4
+ Calculate the cube of the given number
+ Cube is : 64
+ Cube is : 125
+ Cube is : 216
+ Cube is : 343
+ Cube is : 8
+ Total time taken by threads is : 3.0112791061401367
+
+
+
+
+Synchronizing Threads in Python
+import time # import time module
+import threading
+from threading import *
+def cal_sqre(num): # define a square calculating function
+print(" Calculate the square root of the given number")
+for n in num: # Use for loop
+time.sleep(0.3) # at each iteration it waits for 0.3 time
+9/13/22, 3:40 PM practical 2.2.ipynb - Colaboratory
+https://colab.research.google.com/drive/1njgf4l5QTzMk8P48k-v53BBihtyPiWW9#scrollTo=PHtKRJ-aQu3R&printMode=true 2/5
+p( )
+print(' Square is : ', n * n)
+def cal_cube(num): # define a cube calculating function
+print(" Calculate the cube of the given number")
+for n in num: # for loop
+time.sleep(0.3) # at each iteration it waits for 0.3 time
+print(" Cube is : ", n * n *n)
+ar = [4, 5, 6, 7, 2] # given array
+t = time.time() # get total time to execute the functions
+#cal_cube(ar)
+#cal_sqre(ar)
+th1 = threading.Thread(target=cal_sqre, args=(ar, ))
+th2 = threading.Thread(target=cal_cube, args=(ar, ))
+th1.start()
+th2.start()
+th1.join()
+th2.join()
+print(" Total time taking by threads is :", time.time() - t) # print the total time
+print(" Again executing the main thread")
+print(" Thread 1 and Thread 2 have finished their execution.")
+ Calculate the square root of the given number
+ Calculate the cube of the given number
+ Square is : 16
+ Cube is : 64
+ Square is : 25
+ Cube is : 125
+ Square is : 36
+ Cube is : 216
+ Square is : 49
+ Cube is : 343
+ Square is : 4
+ Cube is : 8
+ Total time taking by threads is : 1.507401466369629
+ Again executing the main thread
+ Thread 1 and Thread 2 have finished their execution.
